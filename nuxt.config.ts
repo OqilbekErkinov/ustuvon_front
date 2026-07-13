@@ -1,7 +1,9 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
-  devtools: { enabled: true },
+  // DevTools try to resolve `vite` dynamically, which breaks Vercel's
+  // production install step. Keep it on for local dev, off everywhere else.
+  devtools: { enabled: !process.env.VERCEL && !process.env.CI },
 
   modules: [
     '@pinia/nuxt',
